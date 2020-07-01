@@ -22,4 +22,4 @@ app.use('/api',loginUrl)
 //3.开启服务器
 app.listen(9999, () => {
     console.log('running...');
-});
+})
