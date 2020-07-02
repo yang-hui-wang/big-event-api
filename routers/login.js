@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
             id: ret[0].id
         }, 'bigevent', {
             //token有效期
-            expiresIn: '1h'
+            expiresIn: '10h'
         })
         res.json({
             status: 0,
@@ -74,13 +74,16 @@ router.post('/reguser', async (req, res) => {
 })
 
 router.get('/test', async (req, res) => {
-    console.log('hello')
     let sql = 'select * from user'
     let ret = await db.operateDate(sql, null)
     res.json({
         status: 0,
         data: ret
     })
+})
+
+router.get('/userinfo', (req, res) => {
+    res.send('userinfo')
 })
 
 //导出router对象 (router本来就是对象)
