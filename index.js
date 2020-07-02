@@ -5,7 +5,7 @@ const path = require('path')
 const jwt = require('express-jwt')
 const loginUrl = require(path.join(__dirname, "./routers/login.js"))
 const userUrl = require(path.join(__dirname, "./routers/user.js"))
-
+const cateUrl = require(path.join(__dirname, "./routers/cate.js"))
 
 //2.创建服务器
 let app = express();
@@ -36,6 +36,15 @@ app.use(jwt({ secret: 'bigevent' }).unless({ path: /^\/api/ }))
 //设置路径
 app.use('/api', loginUrl)
 app.use('/my', userUrl)
+app.use('/my/article', cateUrl)
+
+//统一处理所有不存在的路由
+app.all('*', (req, res) => {
+    res.status(404).json({
+        status: 404,
+        message: "请求资源不存在"
+    })
+})
 
 //添加一个统一处理异常信息的中间件
 app.use((err, req, res, next) => {

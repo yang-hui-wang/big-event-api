@@ -36,7 +36,6 @@ router.get('/userinfo', async (req, res) => {
 router.post('/userinfo', async (req, res) => {
     //获取请求参数
     let parm = req.body
-    console.log(parm);//{ nickname: 'abcd', email: '125@163.com' }
     //更新用户的信息
     let sql = 'update user set ? where id = ?'
     // 如果是增删改操作，那么返回对象；如果是查询，那么返回数组
@@ -45,9 +44,6 @@ router.post('/userinfo', async (req, res) => {
         email: parm.email
     }
     let ret = await db.operateDate(sql, [value, parm.id])
-    console.log(ret);
-    console.log(parm.id);
-    console.log(req.user.id);
     if (ret && ret.affectedRows > 0) {
         res.json({
             status: 0,
