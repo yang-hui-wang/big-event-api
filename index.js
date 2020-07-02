@@ -6,6 +6,7 @@ const jwt = require('express-jwt')
 const loginUrl = require(path.join(__dirname, "./routers/login.js"))
 const userUrl = require(path.join(__dirname, "./routers/user.js"))
 const cateUrl = require(path.join(__dirname, "./routers/cate.js"))
+const articleUrl = require(path.join(__dirname, "./routers/article.js"))
 
 //2.创建服务器
 let app = express();
@@ -37,6 +38,7 @@ app.use(jwt({ secret: 'bigevent' }).unless({ path: /^\/api/ }))
 app.use('/api', loginUrl)
 app.use('/my', userUrl)
 app.use('/my/article', cateUrl)
+app.use('/my/article', articleUrl)
 
 //统一处理所有不存在的路由
 app.all('*', (req, res) => {

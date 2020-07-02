@@ -3,7 +3,6 @@
 */
 const express = require('express')
 const path = require('path')
-// const utils = require('utility')
 const db = require(path.join(__dirname, '../common/common.js'))
 
 // 路由配置
@@ -53,7 +52,9 @@ router.get('/deletecate/:id', async (req, res) => {
     //获取要删除的分类id
     let id = req.params.id
     //数据库操作
-    let sql = 'delete from cate where id =  ? '
+    // let sql = 'delete from cate where id =  ? '
+    //假删除
+    let sql = 'update category set is_delete = 1 where id = ?'
     let ret = await db.operateDate(sql, id)
     if (ret && ret.affectedRows > 0) {
         res.json({

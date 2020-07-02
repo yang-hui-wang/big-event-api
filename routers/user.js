@@ -14,7 +14,6 @@ router.get('/userinfo', async (req, res) => {
     //根据token获取用户的id 
     //req.user表示从token中获取的信息,该信息是登录成功后放入的
     //req.user属性名称是固定的 
-    // console.log(req.user.id)
     //根据用户的id查询用户的详细信息
     let sql = 'select id, username, nickname, email, user_pic from user where id = ?'
     let ret = await db.operateDate(sql, req.user.id)
@@ -93,7 +92,6 @@ router.post('/update/avatar', async (req, res) => {
     //操作数据库
     let sql = 'update user set user_pic = ? where id = ? '
     let ret = await db.operateDate(sql, [parm.avatar, id])
-    // console.log(parm.avatar);
     //返回响应状态    
     if (ret && ret.affectedRows > 0) {
         res.json({
