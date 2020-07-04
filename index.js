@@ -11,6 +11,9 @@ const articleUrl = require(path.join(__dirname, "./routers/article.js"))
 //2.创建服务器
 let app = express();
 
+//启动静态资源服务
+app.use('/uploads',express.static('uploads'))
+
 //处理客户端post请求参数
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
